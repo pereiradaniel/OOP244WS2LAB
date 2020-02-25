@@ -1,26 +1,29 @@
 // Gift.h
-
-#pragma once
-#ifndef SDDS_GIFT_H_
-#define SDDS_GIFT_H_
+#ifndef _GIFT_H__
+#define _GIFT_H__
 
 namespace sdds {
-  const int MAX_DESC = 15;
-  const double MAX_PRICE = 999.99;
+// Integer defines the maximum price of the gift.
+#define MAX_DESC = 15;
 
-  struct Gift {
-  	// A statically allocated array of characters that will store the descriptiong of the gift.
-  	// The size for this array is based on const MAX_DESC
-    char g_description[MAX_DESC + 1];  // + 1 for null byte
-    // A double that will hold the price of the Gift.
-    // At minimum the price can be 0 and the maximum will be based on MAX_PRICE.
+// Double defines maximum price of the gift.
+#define MAX_PRICE = 999.99;
+
+struct Gift
+{
+    // g_description:  A statically allocated array of characters that will store the description of the Gift.
+    // The size for this array will be based on MAX_DESC defined above.
+    // Remember to include additional space for the nullbyte.
+    char g_description[MAX_DESC + 1];
+    
+    // g_price:  A double that will hold the price of the gift.
+    // At minimum the price can be 0 and the maximum will be based on MAX_PRICE
     double g_price;
-    // An integer that will hold the number of units/copies of the gift.
-    int g_units; // Must be at least 1
-  };
-  void gifting(char* gift_description);
-  void gifting(double& g_price);
-  void gifting(int& gift_units);
-  void display(const Gift& information);
+
+    // g_units:  An integer that will hold the number of units/copies of the gift.
+    // Number of units has to be at least 1.
+    int g_price;
+}
+
 }
 #endif

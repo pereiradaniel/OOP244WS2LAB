@@ -18,29 +18,44 @@
 #include <iostream>
 #include "Gift.h"
 #include "Gift.h" // Intentional
-using namespace std;
-using namespace sdds;
+using namespace std;    // Use std namespace to access C++ functions.
+using namespace sdds;   // Use "sdds" namespace as required by Seneca.
 
 int main() {
   int numberOfGifts = 0; // Initial number of Gifts
 
   // TODO 1: declare a pointer for a dynamic array of Gifts (remember to initialize it)
-  Gift* giftsPtr = nullptr;
+
+    // The address of the dynamic array for "gifts":
+    // Ensure that gifts is not pointing to any valid derefencable address!
+    // "nullptr" identifies the address pointed to as the null address.
+
+    Gift* gifts = nullptr;
+
+
   // END TODO 1
 
   cout << "Enter number of Gifts to allocate: ";
-  cin >> numberOfGifts;
+  // Accept input from user for dynamic memory allocation of "gifts";
+  cin >> numberOfGifts;   // Var will be used to create array.
 
   if (numberOfGifts < 1) return 1;
 
   // TODO 2: allocate dynamic memory for the gifts pointer using the numberOfGifts
-  giftsPtr = new Gift[numberOfGifts];
+  
+    // Size of the array is a run-time variable and not an integer constant or constant expression.
+    // The size of an array located in static memory must be an integer constant or constant expression.
+
+    // Now that number of gifts has been defined by the user, an array of gifts can be created using the var numberOfGifts:
+    gifts = new Gift[numberOfGifts];
+
+
   // END TODO 2
 
   for (int i = 0; i < numberOfGifts; ++i) {
     cout << "Gift #" << i + 1 << ": " << endl;
     // TODO 3: utilizing the gifting functions, allow input for the gift's description
-    
+    gifts[i].gifting();
 	// END TODO 3
     cin.ignore(2000,'\n'); // clear input buffer
     // TODO 4: utilizing the gifting functions, allow the user to input the gift's price
@@ -56,18 +71,11 @@ int main() {
 
   // TODO 6: display the details of each gift using the Gifts module display function
   
-  for (int i = 0; i < numberOfGifts; ++i) {
-    cout << "Gift #" << i + 1 << ": " << endl;
-    display(giftsPtr[i]);
-  }
-
   // END TODO 6
 
   // TODO 7: deallocate the gifts pointer here to avoid memory as we are done with it
-  delete[]giftsPtr;
-  giftsPtr = nullptr;
-
+  
   // END TODO 7
-  return 0;
 
+  return 0;
 }
